@@ -1,3 +1,4 @@
+import { Navbar, Footer } from '@/components'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -11,7 +12,29 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body >{children}</body>
+      <body className='layout'>
+      <header>
+        <Navbar/>
+      </header>
+      <main className='main-container'>
+        {children}
+      </main>
+      <footer>
+        <Footer/>
+      </footer>
+      </body>
     </html>
   )
 }
+
+{/* <div className='layout'>
+      <header>
+        <Navbar/>
+      </header>
+      <main className='main-container'>
+        {children}
+      </main>
+      <footer>
+        <Footer/>
+      </footer>
+    </div> */}
