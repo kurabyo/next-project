@@ -1,23 +1,29 @@
-import { FooterBanner, HeroBanner } from '@/components'
+import { FooterBanner, HeroBanner, Product } from '@/components'
 import React from 'react'
 import { client } from '../../sanity/lib/client'
 
-export const getServerSideProps = async () => {
-  console.log('huita')
+export const getProducts = async () => {
   const query = '*[_type == "product"]'
   const products = await client.fetch(query)
   
-  return {
-    props: {
-      products
-    }
-  }
+  return products
 }
 
-const Home = ({ products }) => {
+export const getBanner = async () => {
+  const query = '*[_type == "banner"]'
+  const banner = await client.fetch(query)
+  
+  return banner
+}
+
+const Home = async () => {
+
+  const products = await getProducts()
+  const banner = await getBanner()
+
   return (
     <>
-      <HeroBanner/>
+      <HeroBanner heroBanner={banner.length && banner[0]}/>
 
       <div className='products-heading'>
         <h2>Best Selling Products</h2>
@@ -25,9 +31,10 @@ const Home = ({ products }) => {
       </div>
 
       <div className='products-container'>
-        {products?.map( p => p.name)}
+        {products?.map( p => <Product key={p._id} product={p}/>)}
       </div>
-      <FooterBanner/>
+
+      <FooterBanner footerBanner={banner.length && banner[0]}/>
     </>
   )
 }
