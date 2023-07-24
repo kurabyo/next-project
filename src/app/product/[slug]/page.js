@@ -1,12 +1,11 @@
 import React from 'react'
-import Image from 'next/image'
 import { ProductImages } from '@/components/ProductImages'
 import { client } from '../../../../sanity/lib/client'
-
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import { Product } from '@/components'
 
-const ProductDetails =  async ({ params: { slug } }) => {
+const ProductDetails = async ({ params: { slug } }) => {
+
   const { image, price, details, name } = await getProduct(slug)
   const products = await getProducts()
 
@@ -14,41 +13,42 @@ const ProductDetails =  async ({ params: { slug } }) => {
     <div>
       <div className='product-detail-container'>
         <div>
-          <ProductImages image={image}/>
-          <div className='product-detail-desc'>
-            <h1>{name}</h1>
-            <div className='reviews'>
-              <div>
-                <AiFillStar />
-                <AiFillStar />
-                <AiFillStar />
-                <AiFillStar />
-                <AiOutlineStar />
-              </div>
-              <p>(20)</p>
+          <ProductImages image={image} />
+        </div>
+        <div className='product-detail-desc'>
+          <h1>{name}</h1>
+          <div className='reviews'>
+            <div>
+              <AiFillStar />
+              <AiFillStar />
+              <AiFillStar />
+              <AiFillStar />
+              <AiOutlineStar />
             </div>
-            <h4>Details: </h4>
-            <p>{details}</p>
-            <p className='price'>${price}</p>
-            <div className='quantity'>
-              <h3>Quantity: </h3>
-              <p className='quantity-desc'>
-                <span className='minus' onClick=''>
-                  <AiOutlineMinus />
-                </span>
-                <span className='num' onClick=''>
-                  0
-                </span>
-                <span className='plus' onClick=''>
-                  <AiOutlinePlus />
-                </span>
-              </p>
-            </div>
-            <div className='buttons'>
-              <button type='button' className='add-to-cart' onClick=''>Add to Cart</button>
-              <button type='button' className='buy-now' onClick=''>Buy Now</button>
-            </div>
+            <p>(20)</p>
           </div>
+          <h4>Details: </h4>
+          <p>{details}</p>
+          <p className='price'>${price}</p>
+          <div className='quantity'>
+            <h3>Quantity: </h3>
+            <p className='quantity-desc'>
+              <span className='minus' onClick=''>
+                <AiOutlineMinus />
+              </span>
+              <span className='num' onClick=''>
+                0
+              </span>
+              <span className='plus' onClick=''>
+                <AiOutlinePlus />
+              </span>
+            </p>
+          </div>
+          <div className='buttons'>
+            <button type='button' className='add-to-cart' onClick=''>Add to Cart</button>
+            <button type='button' className='buy-now' onClick=''>Buy Now</button>
+          </div>
+
         </div>
       </div>
       <div className='maylike-products-wrapper'>
@@ -82,3 +82,4 @@ export const getProducts = async () => {
 
   return products
 }
+
