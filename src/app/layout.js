@@ -13,24 +13,21 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    
-      
-      <html lang="en">
-        <body className='layout'>
-          <header>
-            <Navbar />
-          </header>
-          <main className='main-container'>
-          <Toaster/>
+    <html lang="en">
+      <body className='layout'>
           <StateContext>
+        <header>
+          <Navbar />
+        </header>
+        <main className='main-container'>
+          <Toaster />
             {children}
+        </main>
+        <footer>
+          <Footer />
+        </footer>
           </StateContext>
-          </main>
-          <footer>
-            <Footer />
-          </footer>
-        </body>
-      </html>
-    
+      </body>
+    </html>
   )
 }

@@ -3,12 +3,14 @@ import { ProductImages } from '@/components/ProductImages'
 import { client } from '../../../../sanity/lib/client'
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import { Product } from '@/components'
+import { Quantity } from '@/components/Quantity'
 
 const ProductDetails = async ({ params: { slug } }) => {
 
-  const { image, price, details, name } = await getProduct(slug)
+  const product = await getProduct(slug)
   const products = await getProducts()
-
+  const { image, price, details, name } = product
+  
   return (
     <div>
       <div className='product-detail-container'>
@@ -30,24 +32,7 @@ const ProductDetails = async ({ params: { slug } }) => {
           <h4>Details: </h4>
           <p>{details}</p>
           <p className='price'>${price}</p>
-          <div className='quantity'>
-            <h3>Quantity: </h3>
-            <p className='quantity-desc'>
-              <span className='minus' onClick=''>
-                <AiOutlineMinus />
-              </span>
-              <span className='num' onClick=''>
-                0
-              </span>
-              <span className='plus' onClick=''>
-                <AiOutlinePlus />
-              </span>
-            </p>
-          </div>
-          <div className='buttons'>
-            <button type='button' className='add-to-cart' onClick=''>Add to Cart</button>
-            <button type='button' className='buy-now' onClick=''>Buy Now</button>
-          </div>
+          <Quantity product={product}/>
 
         </div>
       </div>
