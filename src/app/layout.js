@@ -9,11 +9,14 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: 'Dark Souls Weapons',
   description: 'Created by kurabyo',
+  
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+      </head>
       <body className='layout'>
           <StateContext>
         <header>
